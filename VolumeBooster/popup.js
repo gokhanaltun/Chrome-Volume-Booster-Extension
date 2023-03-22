@@ -9,7 +9,6 @@ const update_ui = () => {
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             JSON.parse(saved_tabs).forEach((tab) => {
                 if (tab[0] == tabs[0].id) {
-                    console.log(tab[1]);
                     vol_label.innerHTML = "Volume / " + (Number(tab[1]) * 100).toFixed() + "%";
                     vol_range.value = tab[1];
                     return;
@@ -26,7 +25,7 @@ const update_ui = () => {
 update_ui();
 
 const set_tabs_volumes = (tabId, vol) => {
-    tabs = localStorage.getItem("tabsVolList");
+    let tabs = localStorage.getItem("tabsVolList");
 
     if (tabs) {
         tabs = JSON.parse(tabs);
